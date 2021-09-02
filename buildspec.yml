@@ -6,7 +6,7 @@ phases:
       - aws ecr get-login-password --region eu-central-1 | docker login --username jtursunov@apix.uz --password-stdin 746987743636.dkr.ecr.eu-central-1.amazonaws.com
   build:
     commands:        
-      - docker build -t $IMAGE_REPO_NAME:$IMAGE_TAG .
+      - docker build -t devops-test:latest .
       - docker tag latest 746987743636.dkr.ecr.eu-central-1.amazonaws.com/devops-test   
   post_build:
     commands:
