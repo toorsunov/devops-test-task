@@ -3,17 +3,12 @@ version: 0.2
 phases:
   pre_build:
     commands:
-      - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 746987743636.dkr.ecr.eu-central-1.amazonaws.com
   build:
     commands:
-      - echo Build started on `date`
-      - echo Building the Docker image...
       - docker build -t devops-test .
       - docker tag devops-test:latest 746987743636.dkr.ecr.eu-central-1.amazonaws.com/devops-test:latest
 
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker images...
       - docker push 746987743636.dkr.ecr.eu-central-1.amazonaws.com/devops-test:latest
